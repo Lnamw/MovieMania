@@ -12,4 +12,6 @@
 
 @property (nonatomic, copy) NSString *movieTitleSelected;
 
+@property (nonatomic, strong) NSMutableArray *myFavoriteList;
+
 @end

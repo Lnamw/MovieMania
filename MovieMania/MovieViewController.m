@@ -11,11 +11,15 @@
 
 @interface MovieViewController ()
 
+@property (nonatomic, strong) Movie *movieSelected;
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *yearLabel;
 @property (weak, nonatomic) IBOutlet UILabel *genreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *plotLabel;
+
+- (IBAction)addToFavorites:(id)sender;
 
 @end
 
@@ -24,8 +28,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    
     [self loadMovieDetails];
+    
+    if (self.myFavoriteList == nil) {
+        self.myFavoriteList = [[NSMutableArray alloc] initWithCapacity:0];
+    }
     
 }
 
@@ -49,19 +56,19 @@
         NSError *jsonError;
         NSDictionary *movieDetails = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
         
-        Movie *movie = [[Movie alloc] init];
-        movie.title = movieDetails[@"Title"];
-        movie.year = movieDetails[@"Year"];
-        movie.genre = movieDetails[@"Genre"];
-        movie.plot = movieDetails[@"Plot"];
-        movie.poster = movieDetails[@"Poster"];
+        self.movieSelected = [[Movie alloc] init];
+        self.movieSelected.title = movieDetails[@"Title"];
+        self.movieSelected.year = movieDetails[@"Year"];
+        self.movieSelected.genre = movieDetails[@"Genre"];
+        self.movieSelected.plot = movieDetails[@"Plot"];
+        self.movieSelected.poster = movieDetails[@"Poster"];
 
 
-        if (movie.title != nil) {
-            self.titleLabel.text = movie.title;
-            self.yearLabel.text = movie.year;
-            self.genreLabel.text = movie.genre;
-            self.plotLabel.text = movie.plot;
+        if (self.movieSelected.title != nil) {
+            self.titleLabel.text = self.movieSelected.title;
+            self.yearLabel.text = self.movieSelected.year;
+            self.genreLabel.text = self.movieSelected.genre;
+            self.plotLabel.text = self.movieSelected.plot;
         } else {
             
             self.titleLabel.hidden = YES;
@@ -86,7 +93,12 @@
 
 }
 
-
+- (IBAction)addToFavorites:(id)sender {
+    
+    [self.myFavoriteList addObject:self.movieSelected];
+    
+    
+}
 
 
 /*
@@ -98,5 +110,9 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+
+
 
 @end
