@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MovieViewController.h
 //  MovieMania
 //
 //  Created by Elena Maso Willen on 15/05/2016.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface MovieViewController : UIViewController
 
+@property (nonatomic, copy) NSString *movieTitleSelected;
 
 @end
-
