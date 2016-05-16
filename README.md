@@ -7,5 +7,5 @@
 5. Add loadMovie method
 6. add if statement if wrong title typed (Alert + label hidden)
 7. create "addToFavorites" button and method
-8. Struggling with step 7...
+8. Struggling with step 7 and auto layout...
 
