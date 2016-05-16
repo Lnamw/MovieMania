@@ -16,6 +16,7 @@
 		AAFD5E7D1CE8A8EF00C62589 /* MovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD5E7C1CE8A8EF00C62589 /* MovieViewController.m */; };
 		AAFD5E811CE8C60000C62589 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD5E801CE8C60000C62589 /* Movie.m */; };
 		AAFD5E841CE8E62F00C62589 /* Favorite.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD5E831CE8E62F00C62589 /* Favorite.m */; };
+		AAFD5EAA1CE9D9AE00C62589 /* FavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD5EA91CE9D9AE00C62589 /* FavoritesTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		AAFD5E801CE8C60000C62589 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		AAFD5E821CE8E62F00C62589 /* Favorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Favorite.h; sourceTree = "<group>"; };
 		AAFD5E831CE8E62F00C62589 /* Favorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Favorite.m; sourceTree = "<group>"; };
+		AAFD5EA81CE9D9AE00C62589 /* FavoritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableViewController.h; sourceTree = "<group>"; };
+		AAFD5EA91CE9D9AE00C62589 /* FavoritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,8 @@
 				AAFD5E791CE8A2D600C62589 /* SearchViewController.m */,
 				AAFD5E7B1CE8A8EF00C62589 /* MovieViewController.h */,
 				AAFD5E7C1CE8A8EF00C62589 /* MovieViewController.m */,
+				AAFD5EA81CE9D9AE00C62589 /* FavoritesTableViewController.h */,
+				AAFD5EA91CE9D9AE00C62589 /* FavoritesTableViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 				AAFD5E7A1CE8A2D600C62589 /* SearchViewController.m in Sources */,
 				AAFD5E811CE8C60000C62589 /* Movie.m in Sources */,
 				AAFD5E841CE8E62F00C62589 /* Favorite.m in Sources */,
+				AAFD5EAA1CE9D9AE00C62589 /* FavoritesTableViewController.m in Sources */,
 				AAFD5E621CE8913800C62589 /* main.m in Sources */,
 				AAFD5E7D1CE8A8EF00C62589 /* MovieViewController.m in Sources */,
 			);
@@ -334,6 +340,7 @@
 				AAFD5E761CE8913800C62589 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

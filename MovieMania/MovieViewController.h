@@ -7,11 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Movie.h"
+
+@protocol MovieViewControllerDelegate <NSObject>
+
+- (void)addMovieToFavoriteList:(Movie *)movie;
+
+@end
 
 @interface MovieViewController : UIViewController
 
+@property (weak, nonatomic) id<MovieViewControllerDelegate>delegate;
+
 @property (nonatomic, copy) NSString *movieTitleSelected;
 
-@property (nonatomic, strong) NSMutableArray *myFavoriteList;
+
 
 @end

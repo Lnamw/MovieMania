@@ -18,6 +18,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *yearLabel;
 @property (weak, nonatomic) IBOutlet UILabel *genreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *plotLabel;
+@property (weak, nonatomic) IBOutlet UILabel *buttonChangeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *buttonLabel;
+
 
 - (IBAction)addToFavorites:(id)sender;
 
@@ -30,9 +33,11 @@
 
     [self loadMovieDetails];
     
-    if (self.myFavoriteList == nil) {
-        self.myFavoriteList = [[NSMutableArray alloc] initWithCapacity:0];
-    }
+    self.buttonChangeLabel.hidden = YES;
+    
+//    if (self.myFavoriteList == nil) {
+//        self.myFavoriteList = [[NSMutableArray alloc] initWithCapacity:0];
+//    }
     
 }
 
@@ -107,8 +112,11 @@
 
 - (IBAction)addToFavorites:(id)sender {
     
-    [self.myFavoriteList addObject:self.movieSelected];
-    
+    [self.delegate addMovieToFavoriteList:self.movieSelected];
+    self.buttonLabel.hidden = YES;
+    self.buttonChangeLabel.hidden = NO;
+    self.buttonChangeLabel.text = @"Movie added to favorites.";
+
     
 }
 
