@@ -69,6 +69,18 @@
             self.yearLabel.text = self.movieSelected.year;
             self.genreLabel.text = self.movieSelected.genre;
             self.plotLabel.text = self.movieSelected.plot;
+            
+            
+            NSURLSessionDownloadTask *getPosterTask = [session downloadTaskWithURL:[NSURL URLWithString:self.movieSelected.poster] completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                UIImage *downloadedPoster = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.imageView.image = downloadedPoster;
+                });
+            }];
+            
+            [getPosterTask resume];
+            
         } else {
             
             self.titleLabel.hidden = YES;
