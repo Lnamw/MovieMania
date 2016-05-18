@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Movie : NSObject
+@interface Movie : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *year;

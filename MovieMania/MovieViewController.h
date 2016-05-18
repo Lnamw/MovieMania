@@ -21,6 +21,7 @@
 
 @property (nonatomic, copy) NSString *movieTitleSelected;
 
+@property (nonatomic, strong) Movie *movieSelectedRow;
 
 
 @end

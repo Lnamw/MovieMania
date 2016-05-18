@@ -8,6 +8,7 @@
 
 #import "SearchViewController.h"
 #import "MovieViewController.h"
+#import "FavoritesTableViewController.h"
 
 @interface SearchViewController () <UITextFieldDelegate>
 
@@ -38,11 +39,23 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
     if ([segue.identifier isEqualToString:@"showMovieSegue"]) {
-        MovieViewController *vc = (MovieViewController *)[segue destinationViewController];
+        MovieViewController *mvc = (MovieViewController *)[segue destinationViewController];
         
         NSString *movieTitle = self.searchTextField.text;
         
-        vc.movieTitleSelected = movieTitle;
+        mvc.movieTitleSelected = movieTitle;
+        
+        for (UINavigationController *nc in self.tabBarController.viewControllers) {
+            if ([nc isKindOfClass:[UINavigationController class]]) {
+            
+                for (UIViewController *vc in nc.viewControllers) {
+                    if ([vc isKindOfClass:[FavoritesTableViewController class]]) {
+                        mvc.delegate = (FavoritesTableViewController *)vc;
+                        break;
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -7,8 +7,12 @@
 //
 
 #import "FavoritesTableViewController.h"
+#import "FavoriteCell.h"
+#import "MovieViewController.h"
+#import "Movie.h"
 
 @interface FavoritesTableViewController ()
+
 
 @end
 
@@ -17,11 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self loadMovies];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,12 +29,43 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSMutableArray *)myFavoriteList {
+    if (_myFavoriteList == nil) {
+        _myFavoriteList = [[NSMutableArray alloc] initWithCapacity:10];
+    }
+    return _myFavoriteList;
+}
+
+
 #pragma mark - MovieViewController Delegate
 
 - (void)addMovieToFavoriteList:(Movie *)movie {
     
-    [self.myFavoriteList addObject:movie];
+    BOOL found = NO;
     
+    for (Movie *findMovie in self.myFavoriteList) {
+        if ([findMovie.title isEqualToString: movie.title] ) {
+            found = YES;
+        }
+    }
+    
+    if (!found) {
+        [self.myFavoriteList addObject:movie];
+        
+        [self saveMovies];
+        
+        
+    } else {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:@"Movie already added to your list" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        }];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+
+    }
+
+    
+    [self.tableView reloadData];
 }
 
 
@@ -52,56 +83,71 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"favoriteCell" forIndexPath:indexPath];
+    FavoriteCell *cell = (FavoriteCell *)[tableView dequeueReusableCellWithIdentifier:@"favoriteCell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    Movie *movie = self.myFavoriteList[indexPath.row];
+    
+    cell.titleLabelCell.text = movie.title;
+    cell.yearLabelCell.text = movie.year;
+    cell.genreLabelCell.text = movie.genre;
+
     
     return cell;
 }
 
+#pragma mark - Table View Delegare
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self performSegueWithIdentifier:@"showMovieSegueFromRow" sender:nil];
+    
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+    if ([segue.identifier isEqualToString:@"showMovieSegueFromRow"]) {
+        MovieViewController *mvc = (MovieViewController *)[segue destinationViewController];
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        Movie *movie = self.myFavoriteList[indexPath.row];
+
+        NSString *movieTitle = movie.title;
+        
+        mvc.movieTitleSelected = movieTitle;
+    }
+    
 }
-*/
+
+#pragma mark - loading and saving
+-(NSURL *)applicationDocumentDirectory {
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+-(void)saveMovies {
+
+    NSString *path = [[self applicationDocumentDirectory].path stringByAppendingPathComponent:@"MovieList"];
+    NSData *movieData = [NSKeyedArchiver archivedDataWithRootObject:self.myFavoriteList];
+    
+    [movieData writeToFile:path atomically:YES];
+    
+}
+
+-(void)loadMovies {
+   
+    NSString *path = [[self applicationDocumentDirectory].path stringByAppendingPathComponent:@"MovieList"];
+    NSData *movieData = [NSData dataWithContentsOfFile:path];
+    
+    self.myFavoriteList = [NSKeyedUnarchiver unarchiveObjectWithData:movieData];
+    [self.tableView reloadData];
+    
+}
+
+
+
+
+
 
 @end

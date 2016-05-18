@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AAF77B751CEB7E9A009408DA /* FavoriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF77B741CEB7E9A009408DA /* FavoriteCell.m */; };
 		AAFD5E621CE8913800C62589 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD5E611CE8913800C62589 /* main.m */; };
 		AAFD5E651CE8913800C62589 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD5E641CE8913800C62589 /* AppDelegate.m */; };
 		AAFD5E6B1CE8913800C62589 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAFD5E691CE8913800C62589 /* Main.storyboard */; };
@@ -15,11 +16,12 @@
 		AAFD5E7A1CE8A2D600C62589 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD5E791CE8A2D600C62589 /* SearchViewController.m */; };
 		AAFD5E7D1CE8A8EF00C62589 /* MovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD5E7C1CE8A8EF00C62589 /* MovieViewController.m */; };
 		AAFD5E811CE8C60000C62589 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD5E801CE8C60000C62589 /* Movie.m */; };
-		AAFD5E841CE8E62F00C62589 /* Favorite.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD5E831CE8E62F00C62589 /* Favorite.m */; };
 		AAFD5EAA1CE9D9AE00C62589 /* FavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD5EA91CE9D9AE00C62589 /* FavoritesTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AAF77B731CEB7E9A009408DA /* FavoriteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteCell.h; sourceTree = "<group>"; };
+		AAF77B741CEB7E9A009408DA /* FavoriteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteCell.m; sourceTree = "<group>"; };
 		AAFD5E5D1CE8913800C62589 /* MovieMania.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieMania.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAFD5E611CE8913800C62589 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AAFD5E631CE8913800C62589 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -34,8 +36,6 @@
 		AAFD5E7C1CE8A8EF00C62589 /* MovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieViewController.m; sourceTree = "<group>"; };
 		AAFD5E7F1CE8C60000C62589 /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		AAFD5E801CE8C60000C62589 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
-		AAFD5E821CE8E62F00C62589 /* Favorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Favorite.h; sourceTree = "<group>"; };
-		AAFD5E831CE8E62F00C62589 /* Favorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Favorite.m; sourceTree = "<group>"; };
 		AAFD5EA81CE9D9AE00C62589 /* FavoritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableViewController.h; sourceTree = "<group>"; };
 		AAFD5EA91CE9D9AE00C62589 /* FavoritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -51,6 +51,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AAF77B721CEB7E7B009408DA /* Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				AAF77B731CEB7E9A009408DA /* FavoriteCell.h */,
+				AAF77B741CEB7E9A009408DA /* FavoriteCell.m */,
+			);
+			name = "Custom Cell";
+			sourceTree = "<group>";
+		};
 		AAFD5E541CE8913800C62589 = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +79,7 @@
 		AAFD5E5F1CE8913800C62589 /* MovieMania */ = {
 			isa = PBXGroup;
 			children = (
+				AAF77B721CEB7E7B009408DA /* Custom Cell */,
 				AAFD5E7E1CE8C5EA00C62589 /* Model */,
 				AAFD5E771CE8A2BA00C62589 /* View Controllers */,
 				AAFD5E631CE8913800C62589 /* AppDelegate.h */,
@@ -109,8 +119,6 @@
 			children = (
 				AAFD5E7F1CE8C60000C62589 /* Movie.h */,
 				AAFD5E801CE8C60000C62589 /* Movie.m */,
-				AAFD5E821CE8E62F00C62589 /* Favorite.h */,
-				AAFD5E831CE8E62F00C62589 /* Favorite.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -187,8 +195,8 @@
 			files = (
 				AAFD5E651CE8913800C62589 /* AppDelegate.m in Sources */,
 				AAFD5E7A1CE8A2D600C62589 /* SearchViewController.m in Sources */,
+				AAF77B751CEB7E9A009408DA /* FavoriteCell.m in Sources */,
 				AAFD5E811CE8C60000C62589 /* Movie.m in Sources */,
-				AAFD5E841CE8E62F00C62589 /* Favorite.m in Sources */,
 				AAFD5EAA1CE9D9AE00C62589 /* FavoritesTableViewController.m in Sources */,
 				AAFD5E621CE8913800C62589 /* main.m in Sources */,
 				AAFD5E7D1CE8A8EF00C62589 /* MovieViewController.m in Sources */,

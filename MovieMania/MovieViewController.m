@@ -51,7 +51,7 @@
     NSString *movieTitle = [[NSString alloc] initWithString:self.movieTitleSelected];
     NSString *movieTitleForUrl = [movieTitle stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     
-    NSLog(@"tile fir url is: %@", movieTitleForUrl);
+    NSLog(@"title for url is: %@", movieTitleForUrl);
     
     NSString *apiUrl = [NSString stringWithFormat:@"http://www.omdbapi.com/?t=%@&y=&plot=short&r=json", movieTitleForUrl];
 
